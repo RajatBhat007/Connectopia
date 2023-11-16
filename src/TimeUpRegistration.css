@@ -1,0 +1,23 @@
+.timeup-container {
+  position: relative;
+  width: 100%;
+  width: auto;
+  height: 100%;
+  text-align: center;
+}
+
+.timeup-images {
+  width: 50%;
+  width: auto;
+  height: 90%;
+  margin-top: 10%;
+  max-width: 370px;
+}
+.timeup-begin {
+  position: absolute;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 5%;
+  width: 40%;
+}

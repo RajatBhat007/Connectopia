@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+.control-buttons {
+  position: relative;
+  z-index: 1000;
+}
+
+.container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.charater-container4 img {
+  position: absolute;
+  top: 5%;
+  left: 1%;
+  width: 100%;
+  height: 90%;
+  z-index: 10;
+}

@@ -1,0 +1,26 @@
+.start-the-quest {
+  cursor: pointer;
+}
+
+.banner-img2 img {
+  padding-top: 3vh;
+}
+
+@media (max-width: 768px) {
+  .banner-img2 img {
+    padding-top: 3vh;
+    max-width: 77%;
+    max-height: 77vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .banner-img2 img {
+    width: 20%;
+    height: 40%;
+  }
+
+  .start-button {
+    cursor: pointer;
+  }
+}
