@@ -53,16 +53,16 @@ export function Register({ apiData }) {
   };
 
   function handleFinalScreen() {
-    const levelCleared = localStorage.getItem('level-cleared');
+    const levelCleared = localStorage.getItem("level-cleared");
 
     const levelRoutes = {
-      '1': '/FinalScreen1',
-      '2': '/FinalScreen2',
-      '3': '/FinalScreen3',
-      '4': '/FinalScreen4',
+      1: "/FinalScreen1",
+      2: "/FinalScreen2",
+      3: "/FinalScreen3",
+      4: "/FinalScreen4",
     };
 
-    const route = levelRoutes[levelCleared] || '/FinalScreen5';
+    const route = levelRoutes[levelCleared] || "/FinalScreen5";
 
     navigate(route);
   }
@@ -78,7 +78,7 @@ export function Register({ apiData }) {
 
         try {
           const otpResponse = await axios.post(
-            `https://skillmuni.in:8080/sendotp/${phoneNumber}`
+            `https://www.connectopia.app:5000/sendotp/${phoneNumber}`
           );
 
           if (otpResponse.status === 200) {
@@ -100,14 +100,13 @@ export function Register({ apiData }) {
   const handleOtpVerification = async () => {
     try {
       const otpVerifyResponse = await axios.get(
-        `https://skillmuni.in:8080/verifyotp/${phoneNumber}/${otp}`
+        `https://www.connectopia.app:5000/verifyotp/${phoneNumber}/${otp}`
       );
 
       if (otpVerifyResponse.data) {
         setError(otpVerifyResponse.data);
 
         if (otpVerifyResponse.status === 200) {
-
           const data = {
             name: name,
             emailid: email,
@@ -117,7 +116,7 @@ export function Register({ apiData }) {
 
           try {
             const response = await axios.post(
-              "https://skillmuni.in:8080/addPlayerDetails",
+              "https://www.connectopia.app:5000/addPlayerDetails",
               data,
               {
                 "Content-Type": "application/json",
@@ -130,7 +129,7 @@ export function Register({ apiData }) {
               setEmail("");
               setTimeout(() => {
                 handleFinalScreen();
-              }, 2000)
+              }, 2000);
               setError("");
               setMsg("You've successfully registered.");
             }
@@ -138,7 +137,7 @@ export function Register({ apiData }) {
             // setError("Error in API posting.");
             setError("You've already registered.");
             // setError(`Error in API posting`);
-            // console.log(`Error in API posting. ${error}`);              
+            // console.log(`Error in API posting. ${error}`);
           }
         }
       } else {
@@ -150,45 +149,57 @@ export function Register({ apiData }) {
     }
   };
 
-  const backgroundImage = data && data['1'] ? data['1'].find((image) => image.key.replace(/\.(jpeg|jpg|png)$/, '') === 'Background') : null;
-  const Banner = data && data['7'] ? data['7'].find((image) => image.key.replace(/\.(jpeg|jpg|png)$/, '') === 'Registration Screen') : null;
+  const backgroundImage =
+    data && data["1"]
+      ? data["1"].find(
+          (image) => image.key.replace(/\.(jpeg|jpg|png)$/, "") === "Background"
+        )
+      : null;
+  const Banner =
+    data && data["7"]
+      ? data["7"].find(
+          (image) =>
+            image.key.replace(/\.(jpeg|jpg|png)$/, "") === "Registration Screen"
+        )
+      : null;
 
-  const levelCleared = localStorage.getItem('level-cleared');
+  const levelCleared = localStorage.getItem("level-cleared");
 
   const dataKeys = {
-    "0": '8',
-    "1": '22',
-    "2": '42',
-    "3": '62',
-    "4": '82',
-    "default": '102'
+    0: "8",
+    1: "22",
+    2: "42",
+    3: "62",
+    4: "82",
+    default: "102",
   };
 
   const dataKey = dataKeys[levelCleared] || dataKeys["default"];
 
-  const ProgressBar = data && data[dataKey]
-    ? data[dataKey].find((image) => image.key.replace(/\.(jpeg|jpg|png)$/, '') === 'Progress Bar')
-    : null;
+  const ProgressBar =
+    data && data[dataKey]
+      ? data[dataKey].find(
+          (image) =>
+            image.key.replace(/\.(jpeg|jpg|png)$/, "") === "Progress Bar"
+        )
+      : null;
 
   const backgroundImageStyle = {
-    backgroundImage: `url("${backgroundImage?.value || ''}")`,
+    backgroundImage: `url("${backgroundImage?.value || ""}")`,
   };
-
 
   return (
     <div className="container">
       <div className="page-container">
         <div className="background-image" style={backgroundImageStyle}>
           <div className="register-container1">
-
             {Banner && (
               <img src={Banner.value} alt="Banner" className="register-image" />
             )}
 
-            <div >
+            <div>
               <div className="overlapping-form">
-
-                <div >
+                <div>
                   <input
                     type="text"
                     id="name"
@@ -197,8 +208,10 @@ export function Register({ apiData }) {
                     required
                     className="hello"
                   />
-                </div><br /><br />
-                <div >
+                </div>
+                <br />
+                <br />
+                <div>
                   <input
                     type="tel"
                     id="phoneNumber"
@@ -207,8 +220,10 @@ export function Register({ apiData }) {
                     required
                     className="hello"
                   />
-                </div><br /><br />
-                <div >
+                </div>
+                <br />
+                <br />
+                <div>
                   <input
                     type="email"
                     id="email"
@@ -217,7 +232,6 @@ export function Register({ apiData }) {
                     className="hello"
                   />
                 </div>
-
               </div>
 
               {isOtpSent ? (
@@ -232,7 +246,10 @@ export function Register({ apiData }) {
                       className="input-otp"
                       placeholder="enter OTP"
                     />
-                    <button onClick={handleOtpVerification} className="verify-button btn btn-secondary btn-sm" >
+                    <button
+                      onClick={handleOtpVerification}
+                      className="verify-button btn btn-secondary btn-sm"
+                    >
                       Verify OTP
                     </button>
                   </div>
@@ -241,21 +258,26 @@ export function Register({ apiData }) {
               ) : (
                 <div className="overlapping-form"></div>
               )}
-
             </div>
           </div>
           <div className="register-container2">
             {ProgressBar && (
-              <img src={ProgressBar.value} alt="ProgressBar" className="progress-image" />
+              <img
+                src={ProgressBar.value}
+                alt="ProgressBar"
+                className="progress-image"
+              />
             )}
 
-            <div className="register-text text-center" onClick={handleButtonClick}></div>
+            <div
+              className="register-text text-center"
+              onClick={handleButtonClick}
+            ></div>
             {error && <p className="error-message">{error}</p>}
             {msg && <p className="message">{msg}</p>}
           </div>
         </div>
       </div>
-
     </div>
   );
 }
