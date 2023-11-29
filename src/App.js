@@ -43,7 +43,7 @@ function App() {
 
     if (hasRefreshed) {
       localStorage.removeItem("hasRefreshed");
-      window.location.href = "/AR-Game";
+      window.location.href = "/Connectopia-Beta";
       localStorage.removeItem("level-cleared");
     } else {
       localStorage.setItem("hasRefreshed", "true");
@@ -51,7 +51,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter basename="/AR-Game">
+    <BrowserRouter basename="/Connectopia-Beta">
       <Routes>
         <Route path="/*" element={<MainContent />} />
         <Route path="/:campaignId/:scanType" element={<MainContent />} />
